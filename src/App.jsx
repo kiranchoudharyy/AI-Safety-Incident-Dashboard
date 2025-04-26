@@ -10,7 +10,7 @@ function App() {
       severity: "Medium", 
       reported_at: "2025-03-15T10:00:00Z",
       status: "Investigating",
-      assignee: "Emma Thompson"
+      assignee: "Bhanu Pratap Singh"
     },
     { 
       id: 2, 
@@ -19,7 +19,7 @@ function App() {
       severity: "High", 
       reported_at: "2025-04-02T14:30:00Z",
       status: "Open",
-      assignee: "Alex Chen"
+      assignee: "Aakash Prajapati"
     },
     { 
       id: 3, 
@@ -28,7 +28,7 @@ function App() {
       severity: "Low", 
       reported_at: "2025-03-20T09:15:00Z",
       status: "Resolved",
-      assignee: "Jordan Lee"
+      assignee: "Manjit Kaur"
     }
   ]);
   
