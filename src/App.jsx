@@ -8,18 +8,18 @@ function App() {
       title: "Biased Recommendation Algorithm", 
       description: "Algorithm consistently favored certain demographics in job recommendations, creating an unfair advantage for some user groups while disadvantaging others.", 
       severity: "Medium", 
-      reported_at: "2025-03-15T10:00:00Z",
+      reported_at: "2025-03-15",
       status: "Investigating",
-      assignee: "Bhanu Pratap Singh"
+      assignee: "Aakash Prajapati"
     },
     { 
       id: 2, 
       title: "LLM Hallucination in Critical Info", 
       description: "Large language model provided incorrect safety procedure information when queried about emergency protocols, potentially endangering users in critical situations.", 
       severity: "High", 
-      reported_at: "2025-04-02T14:30:00Z",
+      reported_at: "2025-04-02",
       status: "Open",
-      assignee: "Aakash Prajapati"
+      assignee: "Kiran Choudhary"
     },
     { 
       id: 3, 
@@ -28,7 +28,7 @@ function App() {
       severity: "Low", 
       reported_at: "2025-03-20T09:15:00Z",
       status: "Resolved",
-      assignee: "Manjit Kaur"
+      assignee: "Dhermendar Singh Pratap"
     }
   ]);
   
@@ -48,11 +48,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
   const [statusFilter, setStatusFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [initialLoadDone, setInitialLoadDone] = useState(false);
   const [showStatistics, setShowStatistics] = useState(true);
 
@@ -332,7 +330,9 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800'} dashboard-pattern`}>
+    <div className={`min-h-screen transition-colors duration-300 ${
+      darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800'
+    } dashboard-pattern`}>
       {showNotification && (
         <div className="fixed top-4 right-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-3 rounded-lg shadow-lg animate-fade-in-out z-50 flex items-center">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -356,29 +356,31 @@ function App() {
           <div className="flex items-center mt-4 md:mt-0 space-x-3">
             <button 
               onClick={() => setDarkMode(!darkMode)}
-              className={`flex items-center gap-2 px-4 py-2 cursor-pointer rounded-full ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-100 text-gray-800'} transition-all duration-300 shadow-md transform hover:scale-105 btn-3d`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-white hover:bg-gray-100 text-gray-800'
+              } shadow-md transform hover:scale-105 btn-3d transition-all duration-300`}
               aria-label="Toggle dark mode"
             >
               {darkMode ? (
-                <>
-                  <svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                  </svg>
-                </>
+                <svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
               ) : (
-                <>
-                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                </>
+                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
               )}
             </button>
           </div>
         </header>
         
         {showStatistics && (
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 staggered-fade-in ${initialLoadDone ? 'animate-fade-in' : ''}`}>
-            <div className={`${darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'} rounded-xl shadow-sm p-5  feature-card`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 ${
+            initialLoadDone ? 'animate-fade-in' : ''
+          } staggered-fade-in`}>
+            <div className={`${
+              darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'
+            } p-5 rounded-xl shadow-sm feature-card`}>
               <div className="flex items-center">
                 <div className="bg-gradient-to-r from-blue-400 to-blue-500 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -392,7 +394,9 @@ function App() {
               </div>
             </div>
             
-            <div className={`${darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'} rounded-xl shadow-sm p-5  feature-card`}>
+            <div className={`${
+              darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'
+            } p-5 rounded-xl shadow-sm feature-card`}>
               <div className="flex items-center">
                 <div className="bg-gradient-to-r from-red-400 to-red-500 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -406,7 +410,9 @@ function App() {
               </div>
             </div>
             
-            <div className={`${darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'} rounded-xl shadow-sm p-5  feature-card`}>
+            <div className={`${
+              darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'
+            } p-5 rounded-xl shadow-sm feature-card`}>
               <div className="flex items-center">
                 <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -420,7 +426,9 @@ function App() {
               </div>
             </div>
             
-            <div className={`${darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'} rounded-xl shadow-sm p-5  feature-card`}>
+            <div className={`${
+              darkMode ? 'bg-gray-800 glass-effect_dark' : 'bg-white glass-effect'
+            } p-5 rounded-xl shadow-sm feature-card`}>
               <div className="flex items-center">
                 <div className="bg-gradient-to-r from-green-400 to-green-500 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -436,16 +444,28 @@ function App() {
           </div>
         )}
         
-        <div className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'} rounded-xl shadow-xl overflow-hidden border backdrop-blur-sm bg-opacity-80 transition-all duration-300 hover:shadow-2xl ${initialLoadDone ? 'animate-slide-up' : ''}`}>
+        <div className={`${
+          darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'
+        } rounded-xl shadow-xl overflow-hidden border backdrop-blur-sm bg-opacity-80 transition-all duration-300 hover:shadow-2xl ${
+          initialLoadDone ? 'animate-slide-up' : ''
+        }`}>
           <div className="flex border-b border-gray-200">
             <button 
-              className={`px-6 py-4 font-medium cursor-pointer text-sm ${activeTab === 'list' ? '!text-blue-600 border-b-2 border-blue-500' : 'text-gray-600 hover:text-gray-800'} ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`}
+              className={`px-6 py-4 font-medium text-sm ${
+                activeTab === 'list' 
+                  ? '!text-blue-600 border-b-2 border-blue-500' 
+                  : `text-gray-600 hover:text-gray-800 ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`
+              }`}
               onClick={() => setActiveTab('list')}
             >
               Incident List
             </button>
             <button 
-              className={`px-6 py-4 font-medium cursor-pointer text-sm ${activeTab === 'report' ? '!text-blue-600 border-b-2 border-blue-500' : 'text-gray-600 hover:text-gray-800'} ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`}
+              className={`px-6 py-4 font-medium text-sm ${
+                activeTab === 'report' 
+                  ? '!text-blue-600 border-b-2 border-blue-500' 
+                  : `text-gray-600 hover:text-gray-800 ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`
+              }`}
               onClick={() => {
                 setActiveTab('report');
                 setShowForm(true);
@@ -454,7 +474,11 @@ function App() {
               Report Incident
             </button>
             <button 
-              className={`px-6 py-4 font-medium cursor-pointer text-sm ${activeTab === 'stats' ? '!text-blue-600 border-b-2 border-blue-500' : 'text-gray-600 hover:text-gray-800'} ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`}
+              className={`px-6 py-4 font-medium text-sm ${
+                activeTab === 'stats' 
+                  ? '!text-blue-600 border-b-2 border-blue-500' 
+                  : `text-gray-600 hover:text-gray-800 ${darkMode ? 'hover:text-white text-white' : 'hover:text-gray-800'}`
+              }`}
               onClick={() => {
                 setActiveTab('stats');
                 setShowStatistics(true);
@@ -480,17 +504,24 @@ function App() {
                         placeholder="Search incidents..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className={`w-full pl-10 pr-4 py-2.5 rounded-lg ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'} border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200`}
+                        className={`w-full pl-10 pr-4 py-2.5 rounded-lg ${
+                          darkMode 
+                            ? 'bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400' 
+                            : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500'
+                        } border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200`}
                       />
                     </div>
                     
                     <div className="flex flex-wrap gap-3">
                       <div className="relative">
                         <select
-                          id="severityFilter"
                           value={filter}
                           onChange={(e) => setFilter(e.target.value)}
-                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${
+                            darkMode 
+                              ? 'bg-gray-700 border-gray-600 text-gray-200' 
+                              : 'bg-white border-gray-300 text-gray-700'
+                          } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
                         >
                           <option value="All">All Severities</option>
                           <option value="Low">Low</option>
@@ -506,10 +537,13 @@ function App() {
                       
                       <div className="relative">
                         <select
-                          id="statusFilter"
                           value={statusFilter}
                           onChange={(e) => setStatusFilter(e.target.value)}
-                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${
+                            darkMode 
+                              ? 'bg-gray-700 border-gray-600 text-gray-200' 
+                              : 'bg-white border-gray-300 text-gray-700'
+                          } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
                         >
                           <option value="All">All Statuses</option>
                           <option value="Open">Open</option>
@@ -525,10 +559,13 @@ function App() {
                       
                       <div className="relative">
                         <select
-                          id="sortOrder"
                           value={sortOrder}
                           onChange={(e) => setSortOrder(e.target.value)}
-                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${darkMode ? 'bg-gray-700 border-gray-600 text-gray-200' : 'bg-white border-gray-300 text-gray-700'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+                          className={`appearance-none border rounded-lg pl-4 pr-10 py-2.5 ${
+                            darkMode 
+                              ? 'bg-gray-700 border-gray-600 text-gray-200' 
+                              : 'bg-white border-gray-300 text-gray-700'
+                          } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
                         >
                           <option value="newest">Newest First</option>
                           <option value="oldest">Oldest First</option>
@@ -545,7 +582,7 @@ function App() {
                           setActiveTab('report');
                           setShowForm(true);
                         }}
-                        className="bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 btn-3d flex items-center gap-2"
+                        className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 btn-3d flex items-center gap-2"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -678,17 +715,31 @@ function App() {
               </>
             ) : activeTab === 'report' ? (
               <div className="max-w-2xl mx-auto animate-fade-in">
-                <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Report New Incident</h2>
+                <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  Report New Incident
+                </h2>
+                
                 <form onSubmit={handleSubmit}>
                   <div className="mb-5">
-                    <label htmlFor="title" className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>Incident Title</label>
+                    <label 
+                      htmlFor="title" 
+                      className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}
+                    >
+                      Incident Title
+                    </label>
                     <input
                       type="text"
                       id="title"
                       name="title"
                       value={newIncident.title}
                       onChange={handleInputChange}
-                      className={`w-full border ${formErrors.title ? 'border-red-500' : darkMode ? 'border-gray-600' : 'border-gray-300'} rounded-lg px-4 py-3 ${darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
+                      className={`w-full border ${
+                        formErrors.title 
+                          ? 'border-red-500' 
+                          : darkMode ? 'border-gray-600' : 'border-gray-300'
+                      } rounded-lg px-4 py-3 ${
+                        darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'
+                      } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
                       placeholder="Provide a clear, descriptive title"
                     />
                     {formErrors.title && (
@@ -702,15 +753,26 @@ function App() {
                   </div>
                   
                   <div className="mb-5">
-                    <label htmlFor="description" className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>Description</label>
+                    <label 
+                      htmlFor="description" 
+                      className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}
+                    >
+                      Description
+                    </label>
                     <textarea
                       id="description"
                       name="description"
                       value={newIncident.description}
                       onChange={handleInputChange}
                       rows="5"
-                      className={`w-full border ${formErrors.description ? 'border-red-500' : darkMode ? 'border-gray-600' : 'border-gray-300'} rounded-lg px-4 py-3 ${darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
-                      placeholder="Describe the incident in detail including context, impact, and any immediate actions taken"
+                      className={`w-full border ${
+                        formErrors.description 
+                          ? 'border-red-500' 
+                          : darkMode ? 'border-gray-600' : 'border-gray-300'
+                      } rounded-lg px-4 py-3 ${
+                        darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'
+                      } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
+                      placeholder="Describe what happened, including context, impact, and any immediate actions taken"
                     ></textarea>
                     {formErrors.description && (
                       <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -723,15 +785,26 @@ function App() {
                   </div>
                   
                   <div className="mb-5">
-                    <label htmlFor="assignee" className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>Assignee</label>
+                    <label 
+                      htmlFor="assignee" 
+                      className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}
+                    >
+                      Assignee
+                    </label>
                     <input
                       type="text"
                       id="assignee"
                       name="assignee"
                       value={newIncident.assignee}
                       onChange={handleInputChange}
-                      className={`w-full border ${formErrors.assignee ? 'border-red-500' : darkMode ? 'border-gray-600' : 'border-gray-300'} rounded-lg px-4 py-3 ${darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'} focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
-                      placeholder="Name of person responsible for this incident"
+                      className={`w-full border ${
+                        formErrors.assignee 
+                          ? 'border-red-500' 
+                          : darkMode ? 'border-gray-600' : 'border-gray-300'
+                      } rounded-lg px-4 py-3 ${
+                        darkMode ? 'bg-gray-700 text-gray-200' : 'bg-white text-gray-800'
+                      } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 shadow-sm`}
+                      placeholder="Who will handle this incident?"
                     />
                     {formErrors.assignee && (
                       <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -746,14 +819,22 @@ function App() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
                     <div>
                       <fieldset>
-                        <legend className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Severity Level</legend>
+                        <legend className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
+                          Severity Level
+                        </legend>
                         <div className="grid grid-cols-3 gap-4">
                           {['Low', 'Medium', 'High'].map((level) => {
                             const severityStyle = getSeverityStyle(level);
                             return (
                               <label 
                                 key={level} 
-                                className={`relative flex items-center justify-center p-4 rounded-lg border ${darkMode ? 'border-gray-700' : newIncident.severity === level ? severityStyle.border + ' ring-2 ring-offset-2 ring-blue-500' : 'border-gray-200'} cursor-pointer transition-all duration-200 hover:border-gray-300 ${darkMode ? 'bg-gray-800' : ''}`}
+                                className={`relative flex items-center justify-center p-4 rounded-lg border ${
+                                  darkMode 
+                                    ? 'border-gray-700' 
+                                    : newIncident.severity === level 
+                                      ? severityStyle.border + ' ring-2 ring-offset-2 ring-blue-500' 
+                                      : 'border-gray-200'
+                                } cursor-pointer transition-all duration-200 hover:border-gray-300 ${darkMode ? 'bg-gray-800' : ''}`}
                               >
                                 <input
                                   type="radio"
@@ -782,14 +863,22 @@ function App() {
                     
                     <div>
                       <fieldset>
-                        <legend className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>Status</legend>
+                        <legend className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
+                          Status
+                        </legend>
                         <div className="grid grid-cols-3 gap-4">
                           {['Open', 'Investigating', 'Resolved'].map((status) => {
                             const currentStyle = getStatusStyle(status);
                             return (
                               <label 
                                 key={status} 
-                                className={`relative flex items-center justify-center p-4 rounded-lg border ${darkMode ? 'border-gray-700' : newIncident.status === status ? 'border-blue-200 ring-2 ring-offset-2 ring-blue-500' : 'border-gray-200'} cursor-pointer transition-all duration-200 hover:border-gray-300 ${darkMode ? 'bg-gray-800' : ''}`}
+                                className={`relative flex items-center justify-center p-4 rounded-lg border ${
+                                  darkMode 
+                                    ? 'border-gray-700' 
+                                    : newIncident.status === status 
+                                      ? 'border-blue-200 ring-2 ring-offset-2 ring-blue-500' 
+                                      : 'border-gray-200'
+                                } cursor-pointer transition-all duration-200 hover:border-gray-300 ${darkMode ? 'bg-gray-800' : ''}`}
                               >
                                 <input
                                   type="radio"
@@ -819,13 +908,17 @@ function App() {
                         setActiveTab('list');
                         setShowForm(false);
                       }}
-                      className={`px-5 py-2.5 border cursor-pointer ${darkMode ? 'border-gray-600 text-gray-300 hover:bg-gray-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'} rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500`}
+                      className={`px-5 py-2.5 border ${
+                        darkMode 
+                          ? 'border-gray-600 text-gray-300 hover:bg-gray-700' 
+                          : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                      } rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500`}
                     >
                       Cancel
                     </button>
                     <button 
                       type="submit"
-                      className="px-5 py-2.5 bg-gradient-to-r cursor-pointer from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 btn-3d"
+                      className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 btn-3d"
                     >
                       Submit Report
                     </button>
@@ -834,46 +927,64 @@ function App() {
               </div>
             ) : (
               <div className="animate-fade-in">
-                <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>AI Safety Incident Analytics</h2>
+                <h2 className={`text-2xl font-semibold mb-6 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  AI Safety Incident Analytics
+                </h2>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   <div className={`${darkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-xl shadow-sm`}>
-                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Incident Status Distribution</h3>
+                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                      Incident Status Distribution
+                    </h3>
                     <div className="space-y-4">
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Open</span>
-                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{stats.open}</span>
+                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {stats.open}
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-yellow-400 h-2.5 rounded-full" style={{ width: `${stats.open * 100 / stats.totalIncidents}%` }}></div>
+                          <div className="bg-yellow-400 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? (stats.open * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
+                      
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Investigating</span>
-                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{stats.investigating}</span>
+                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {stats.investigating}
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: `${stats.investigating * 100 / stats.totalIncidents}%` }}></div>
+                          <div className="bg-blue-500 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? (stats.investigating * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
+                      
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Resolved</span>
-                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{stats.resolved}</span>
+                          <span className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {stats.resolved}
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-green-500 h-2.5 rounded-full" style={{ 
-                            width: `${stats.resolved * 100 / stats.totalIncidents}%` 
-                          }}></div>
+                          <div className="bg-green-500 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? (stats.resolved * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   <div className={`${darkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-xl shadow-sm`}>
-                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Severity Breakdown</h3>
+                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                      Severity Breakdown
+                    </h3>
                     <div className="space-y-4">
                       <div>
                         <div className="flex justify-between mb-1">
@@ -883,11 +994,13 @@ function App() {
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-green-500 h-2.5 rounded-full" style={{ 
-                            width: `${incidents.filter(i => i.severity === "Low").length * 100 / stats.totalIncidents}%` 
-                          }}></div>
+                          <div className="bg-green-500 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? 
+                                 (incidents.filter(i => i.severity === "Low").length * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
+                      
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Medium</span>
@@ -896,11 +1009,13 @@ function App() {
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-yellow-500 h-2.5 rounded-full" style={{ 
-                            width: `${incidents.filter(i => i.severity === "Medium").length * 100 / stats.totalIncidents}%` 
-                          }}></div>
+                          <div className="bg-yellow-500 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? 
+                                 (incidents.filter(i => i.severity === "Medium").length * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
+                      
                       <div>
                         <div className="flex justify-between mb-1">
                           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>High</span>
@@ -909,16 +1024,18 @@ function App() {
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-600">
-                          <div className="bg-red-500 h-2.5 rounded-full" style={{ 
-                            width: `${stats.highSeverity * 100 / stats.totalIncidents}%` 
-                          }}></div>
+                          <div className="bg-red-500 h-2.5 rounded-full" 
+                               style={{ width: `${stats.totalIncidents ? (stats.highSeverity * 100 / stats.totalIncidents) : 0}%` }}>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   <div className={`${darkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-xl shadow-sm`}>
-                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Overall Metrics</h3>
+                    <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                      Overall Metrics
+                    </h3>
                     <div className="space-y-5">
                       <div className="flex items-center">
                         <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${darkMode ? 'bg-gray-600' : 'bg-blue-50'}`}>
@@ -927,8 +1044,12 @@ function App() {
                           </svg>
                         </div>
                         <div className="ml-4">
-                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Average Response Time</p>
-                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>24 hours</p>
+                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            Average Response Time
+                          </p>
+                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                            24 hours
+                          </p>
                         </div>
                       </div>
                       
@@ -939,8 +1060,12 @@ function App() {
                           </svg>
                         </div>
                         <div className="ml-4">
-                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Resolution Rate</p>
-                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{stats.resolutionRate}%</p>
+                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            Resolution Rate
+                          </p>
+                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                            {stats.resolutionRate}%
+                          </p>
                         </div>
                       </div>
                       
@@ -951,8 +1076,12 @@ function App() {
                           </svg>
                         </div>
                         <div className="ml-4">
-                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Critical Incidents</p>
-                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{stats.highSeverity}</p>
+                          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            Critical Incidents
+                          </p>
+                          <p className={`text-xl font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                            {stats.highSeverity}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -960,31 +1089,35 @@ function App() {
                 </div>
                 
                 <div className={`mt-8 ${darkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-xl shadow-sm`}>
-                  <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Recent Activity</h3>
+                  <h3 className={`text-lg font-medium mb-4 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                    Recent Activity
+                  </h3>
                   <div className="space-y-4">
                     {[...incidents]
                       .sort((a, b) => new Date(b.reported_at) - new Date(a.reported_at))
                       .slice(0, 3)
                       .map((incident, index) => {
-                      const severity = getSeverityStyle(incident.severity);
-                      return (
-                        <div key={index} className={`flex items-start p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${severity.badge} mr-3 flex-shrink-0`}>
-                            {severity.icon || (
-                              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                              </svg>
-                            )}
+                        const severity = getSeverityStyle(incident.severity);
+                        return (
+                          <div key={index} className={`flex items-start p-3 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${severity.badge} mr-3 flex-shrink-0`}>
+                              {severity.icon || (
+                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                              )}
+                            </div>
+                            <div>
+                              <p className={`font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+                                {incident.title}
+                              </p>
+                              <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                {incident.status} • {formatDate(incident.reported_at)}
+                              </p>
+                            </div>
                           </div>
-                          <div>
-                            <p className={`font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>{incident.title}</p>
-                            <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                              {incident.status} • {formatDate(incident.reported_at)}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
                   </div>
                 </div>
               </div>
